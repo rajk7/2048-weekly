@@ -713,7 +713,7 @@ GameObject:
   - component: {fileID: 729537102}
   - component: {fileID: 729537101}
   m_Layer: 5
-  m_Name: Best_Score_Text (1)
+  m_Name: Best_Score_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -735,7 +735,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -574, y: 380}
+  m_AnchoredPosition: {x: -574, y: 485}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &729537101
@@ -788,6 +788,7 @@ GameObject:
   m_Component:
   - component: {fileID: 756291493}
   - component: {fileID: 756291494}
+  - component: {fileID: 756291495}
   m_Layer: 0
   m_Name: Debug
   m_TagString: Untagged
@@ -810,6 +811,27 @@ Transform:
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &756291494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756291492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f84ebda36b554f24fbd4736e689a60ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingPosition: {x: 10, y: 10}
+  verticalSpacing: 30
+  horizontalSpacing: 300
+  labelHeight: 20
+  labelWidth: 100
+  fontSize: 25
+  fontColor: {r: 1, g: 1, b: 1, a: 1}
+  showBox: 1
+  padding: 40
+--- !u!114 &756291495
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1433,7 +1455,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -773.80005, y: 379.99997}
+  m_AnchoredPosition: {x: -773.80005, y: 485}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1602371708

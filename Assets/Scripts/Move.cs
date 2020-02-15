@@ -48,13 +48,11 @@ public class Move : MonoBehaviour
     void Start()
     {
         // PlayerPrefs.SetInt("bestscore",0);
-
         GenerateNewTile(2);
 
         audioSource = transform.GetComponent<AudioSource>();
 
         UpdateBestscore();
-
 
     }
 
@@ -148,7 +146,7 @@ public class Move : MonoBehaviour
 
     void UpdateScore()
     {
-        gameScoreText.text = score.ToString("000000000");
+        gameScoreText.text = score.ToString("00");
     }
 
     void UpdateBestscore()
@@ -188,12 +186,12 @@ public class Move : MonoBehaviour
                 if(y !=0 )
                 tileBelow = grid[x, y-1];
 
-                if(x!=gridWidth - 1)
+                if(x != gridWidth - 1)
                 tileBeside = grid[x+1, y];
 
                 if(tileBeside != null)
                 {
-                    if(CurrentTile.GetComponent<Tile>().tileValue == tileBeside.GetComponent<Tile>().tileValue)
+                        if(CurrentTile.GetComponent<Tile>().tileValue == tileBeside.GetComponent<Tile>().tileValue)
                     {
 
                         debug.Add("Check Game Over", "false-Tile Beside", "checkgameover");
@@ -351,7 +349,8 @@ public class Move : MonoBehaviour
                         }
                     }
                 }
-            } else 
+            } 
+            else 
             {
                 phantomTilePosition += -direction;
                 tile.GetComponent<Tile>().moveToPosition = phantomTilePosition;
@@ -360,7 +359,7 @@ public class Move : MonoBehaviour
                 {
                     return false;
                 }
-                 else
+                else
                 {
                     return true;
                 }
@@ -379,9 +378,9 @@ public class Move : MonoBehaviour
                 int movingTileValue = movingTile.GetComponent<Tile>().tileValue;
                 int collidingTileValue = collidingTile.GetComponent<Tile>().tileValue;
                 
-                if (movingTileValue == collidingTileValue && !movingTile.GetComponent<Tile>().mergedThisTurn && !collidingTile.GetComponent<Tile >().mergedThisTurn)
+                if (movingTileValue == collidingTileValue && !movingTile.GetComponent<Tile>().mergedThisTurn && !collidingTile.GetComponent<Tile >().mergedThisTurn && !collidingTile.GetComponent<Tile>().willMergeWithCollidingTile)
                  {
-                    debug.Add("CheckAndiembineTiles", "Inside", "uncheckandcombine");
+                    debug.Add("CheckAndiembineTiles", "Inside IF", "uncheckandcombine");
                     
                     movingTile.GetComponent<Tile>().destroyMe =true;
                     
@@ -405,7 +404,7 @@ public class Move : MonoBehaviour
 
             void GenerateNewTile(int howMany)
             {
-                for(int i = 0; i < howMany; i++)
+                for(int i = 0; i < howMany; ++i)
                 {
 
                     Vector2 locationForNewTile = GetRandomLocationForNewTile();
@@ -465,11 +464,11 @@ public class Move : MonoBehaviour
         List<int> x = new List<int>();
         List<int> y = new List<int>();
             
-            for (int i = 0; i < gridWidth; i++)
+            for (int j = 0; j < gridWidth; j++)
             {
-                for (int j = 0; j < gridHeight; j++)
+                for (int i = 0; i < gridHeight; i++)
                 {
-                    if (grid[i,j] == null)
+                    if (grid[j,i] == null)
                     {
                         x.Add(j);
                         y.Add(i);
@@ -558,7 +557,7 @@ public class Move : MonoBehaviour
                     Destroy(child.gameObject);
                 }
 
-                for (int x = 0 ; x< gridWidth; x++)
+                for (int x = 0 ; x < gridWidth; x++)
                 {
 
                     for(int y = 0;y<gridHeight; y++)
@@ -666,6 +665,7 @@ public class Move : MonoBehaviour
                 progress += Time.deltaTime * timeScale;
                 yield return null;
             }
+            
             tile.transform.localScale = finalScale;
             tile.transform.localPosition = finalPosition;
 
