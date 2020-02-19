@@ -47,7 +47,7 @@ public class Move : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // PlayerPrefs.SetInt("bestscore",0);
+        //PlayerPrefs.SetInt("bestscore",0);
         GenerateNewTile(2);
 
         audioSource = transform.GetComponent<AudioSource>();
@@ -70,6 +70,7 @@ public class Move : MonoBehaviour
             if(!CheckGameOver())
             {
                 CheckUserInput();
+                GetComponent<SwipeGesture>().CheckSwipe();
             }
             else
             {
@@ -95,25 +96,25 @@ public class Move : MonoBehaviour
 
             if(down)
             {
-                debug.Add("Player Pressed Key","down","checkuserInput");
+                //debug.Add("Player Pressed Key","down","checkuserInput");
                 MoveAllTiles(Vector2.down);
             }
 
             if (up)
             {
-                debug.Add("Player Pressed Key", "up", "checkuserInput");
+                //debug.Add("Player Pressed Key", "up", "checkuserInput");
                 MoveAllTiles(Vector2.up);
             }
 
             if (left)
             {
-                debug.Add("Player Pressed Key", "left", "checkuserInput");
+                //debug.Add("Player Pressed Key", "left", "checkuserInput");
                 MoveAllTiles(Vector2.left);
             }
 
             if (right)
             {
-                debug.Add("Player Pressed Key", "right", "checkuserInput");
+                //debug.Add("Player Pressed Key", "right", "checkuserInput");
                 MoveAllTiles(Vector2.right);
             }
         } 
@@ -170,7 +171,7 @@ public class Move : MonoBehaviour
 
         if (transform.childCount < gridWidth * gridHeight)
         {
-            debug.Add("Check Game Over", "false-Empty Spaces", "checkgameover");
+            //debug.Add("Check Game Over", "false-Empty Spaces", "checkgameover");
             return false;
         }
 
@@ -194,7 +195,7 @@ public class Move : MonoBehaviour
                         if(CurrentTile.GetComponent<Tile>().tileValue == tileBeside.GetComponent<Tile>().tileValue)
                     {
 
-                        debug.Add("Check Game Over", "false-Tile Beside", "checkgameover");
+                        //debug.Add("Check Game Over", "false-Tile Beside", "checkgameover");
                         return false;
 
                     }
@@ -205,18 +206,18 @@ public class Move : MonoBehaviour
                     if (CurrentTile.GetComponent<Tile>().tileValue == tileBelow.GetComponent<Tile>().tileValue)
                     {
 
-                        debug.Add("Check Game Over", "false-Empty Spaces", "checkgameover");
+                        //debug.Add("Check Game Over", "false-Empty Spaces", "checkgameover");
                         return false;
                     }
                 }
             }
         }
 
-        debug.Add("Check Game Over", "True", "checkgameover");
+        //debug.Add("Check Game Over", "True", "checkgameover");
         return true;
     }
 
-    void MoveAllTiles(Vector2 direction)
+    public void MoveAllTiles(Vector2 direction)
     {
         int tilesMovedCount = 0;
         UpdateGrid();
@@ -231,6 +232,7 @@ public class Move : MonoBehaviour
                     {
                         if(MoveTile(grid[x, y], direction))
                         tilesMovedCount++;
+                        Debug.Log("left");
                     }
                 }
             }
@@ -246,6 +248,7 @@ public class Move : MonoBehaviour
                     {
                         if (MoveTile(grid[x, y], direction))
                             tilesMovedCount++;
+                            Debug.Log("right");
                     }
                 }
             }
@@ -261,6 +264,7 @@ public class Move : MonoBehaviour
                     {
                         if (MoveTile(grid[x, y], direction))
                             tilesMovedCount++;
+                            Debug.Log("down");
                     }
                 }
             }
@@ -276,6 +280,7 @@ public class Move : MonoBehaviour
                     {
                         if (MoveTile(grid[x, y], direction))
                             tilesMovedCount++;
+                            Debug.Log("up");
                     }
                 }
             }
@@ -369,7 +374,7 @@ public class Move : MonoBehaviour
 
         bool CheckAndCombineTiles (Transform movingTile, Vector2 phantomTilePosition, Vector2 previousPosition)
              {
-                debug.Add("CheckeneComblneTlles", movingTile.name, "checkandcomblnetiles" + movingTile.localPosition.ToString());
+                //debug.Add("CheckeneComblneTlles", movingTile.name, "checkandcomblnetiles" + movingTile.localPosition.ToString());
                 
                 Vector2 pos = movingTile.transform.localPosition;
                 
@@ -380,7 +385,7 @@ public class Move : MonoBehaviour
                 
                 if (movingTileValue == collidingTileValue && !movingTile.GetComponent<Tile>().mergedThisTurn && !collidingTile.GetComponent<Tile >().mergedThisTurn && !collidingTile.GetComponent<Tile>().willMergeWithCollidingTile)
                  {
-                    debug.Add("CheckAndiembineTiles", "Inside IF", "uncheckandcombine");
+                    //debug.Add("CheckAndiembineTiles", "Inside IF", "uncheckandcombine");
                     
                     movingTile.GetComponent<Tile>().destroyMe =true;
                     
@@ -481,7 +486,7 @@ public class Move : MonoBehaviour
         int randX = x.ElementAt(randIndex);
         int randY = y.ElementAt(randIndex);
 
-        debug.Add("new Random Tile Location", randX + ", "+ randY, "randomLocation");
+        //debug.Add("new Random Tile Location", randX + ", "+ randY, "randomLocation");
 
         return new Vector2(randX,randY);
     }
@@ -506,7 +511,7 @@ public class Move : MonoBehaviour
             return false;
         }
 
-        void PrepareTilesForMerging()
+        public void PrepareTilesForMerging()
         {
             foreach (Transform t in transform)
             {

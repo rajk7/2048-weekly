@@ -48,6 +48,7 @@
      <Compile Include="Assets\Scripts\CFDebug.cs" />
      <Compile Include="Assets\Scripts\Move.cs" />
      <Compile Include="Assets\Scripts\NotATile.cs" />
+     <Compile Include="Assets\Scripts\SwipeGesture.cs" />
      <Compile Include="Assets\Scripts\Tile.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/hope/Documents/Unity/2048 weekly/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
